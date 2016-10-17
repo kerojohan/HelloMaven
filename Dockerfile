@@ -5,8 +5,8 @@ ENV MAVEN_TGZ_URL=http://apache.mirror.iweb.ca/maven/maven-3/3.3.9/binaries/apac
 COPY src /tmp
 COPY pom.xml /tmp
 RUN curl -fSL "$MAVEN_TGZ_URL" -o /tmp/maven.tar.gz \
-    && cd /tmp && mvn package \
     && tar -xvf /tmp/maven.tar.gz --strip-components=1  -C maven     \
-    && ln -s /maven/bin/mvn /usr/bin/mvn
+    && ln -s /maven/bin/mvn /usr/bin/mvn \
+    && cd /tmp && mvn package 
     
 COPY /tmp/src/target/HelloDevOp-1.0-SNAPSHOT.war  /usr/local/tomcat/webapps/
